@@ -26,219 +26,62 @@ export const storyNodes: Record<string, StoryNode> = {
       ];
     },
   },
-  early_training: {
-    text: "Entrenas duro cada mañana. Tu cuerpo se fortalece.",
+
+  game_panel_2: {
+    text: "",
+    options: [],
+    component: "GamePanel2",
+  },
+  game2_result_win: {
+    text: "🏆 ¡Increíble actuación bajo presión! Tu fama se dispara y los medios te mencionan como futura estrella.",
     options: [
       {
-        label: "Participar en torneo regional",
-        next: "regional_tournament",
-        effects: { fitness: 5, fame: 5 },
-      },
-      {
-        label: "Mantener rutina estricta",
-        next: "routine_payoff",
-        effects: { reputation: 5 },
+        label: "🎯 Declararte elegible para el draft profesional",
+        next: "nfl_draft",
+        effects: { fame: 20, reputation: 15 },
       },
     ],
   },
-  find_mentor: {
-    text: "Un exjugador acepta ayudarte. Ganas consejos valiosos.",
+  game2_result_lose: {
+    text: "💧 El clima y la presión te pasaron factura, pero tu esfuerzo no pasó desapercibido para los ojeadores.",
     options: [
       {
-        label: "Grabar sesiones para YouTube",
-        next: "youtube_series",
-        effects: { fame: 10 },
+        label: "🔁 Seguir entrenando para intentarlo de nuevo",
+        next: "nfl_draft",
+        effects: { fitness: 10, reputation: 5 },
+      },
+    ],
+  },
+  nfl_draft: {
+    text: "🎤 Día del draft. El salón está lleno de cámaras. Los equipos anuncian sus selecciones. ¿Qué esperas?",
+    options: [
+      {
+        label: "🟢 Primera ronda",
+        next: "draft_result_top",
+        effects: { fame: 30 },
       },
       {
-        label: "Mantener entrenamiento discreto",
-        next: "quiet_progress",
+        label: "🟡 Ronda media",
+        next: "draft_result_mid",
+        effects: { reputation: 10 },
+      },
+      {
+        label: "🔴 Última ronda o no drafteado",
+        next: "draft_result_late",
         effects: { fitness: 5 },
       },
     ],
   },
-  join_elite_team: {
-    text: "Te unes al mejor equipo de tu zona. La competencia es dura.",
-    options: [
-      {
-        label: "Ganar titularidad",
-        next: "earn_spot",
-        effects: { fitness: 5, reputation: 5 },
-      },
-      {
-        label: "Observar desde el banquillo",
-        next: "bench_observation",
-        effects: { reputation: 3 },
-      },
-    ],
+  draft_result_top: {
+    text: "🌟 ¡Felicidades! Has sido seleccionado en la primera ronda. Te espera una carrera brillante como estrella emergente.",
+    options: [],
   },
-  routine_payoff: {
-    text: "Tu constancia es notada. Empiezas a destacar por tu disciplina.",
-    options: [
-      {
-        label: "Siguiente etapa",
-        next: "prep_challenge",
-        effects: { reputation: 2 },
-      },
-    ],
+  draft_result_mid: {
+    text: "📈 Fuiste elegido en una ronda intermedia. Te queda todo por demostrar, pero tienes potencial de sobra.",
+    options: [],
   },
-  youtube_series: {
-    text: "Tus videos se viralizan. Aumenta tu visibilidad.",
-    options: [
-      {
-        label: "Aprovechar fama para obtener patrocinio",
-        next: "brand_deal",
-        effects: { fame: 15 },
-      },
-    ],
-  },
-  quiet_progress: {
-    text: "Mejoras sin llamar la atención. Los scouts discretos te siguen.",
-    options: [
-      {
-        label: "Invitación secreta a campus",
-        next: "secret_camp",
-        effects: { fitness: 5, reputation: 5 },
-      },
-    ],
-  },
-  regional_tournament: {
-    text: "Compites contra lo mejor del estado. Cada jugada cuenta.",
-    options: [
-      {
-        label: "Ganaste el torneo",
-        next: "tournament_win",
-        effects: { fame: 15 },
-      },
-      {
-        label: "Eliminado en semifinales",
-        next: "tournament_lose",
-        effects: { reputation: 5 },
-      },
-    ],
-  },
-  tournament_win: {
-    text: "¡Campeón regional! Tu nombre suena en todos los medios locales.",
-    options: [
-      {
-        label: "Seguir entrenando",
-        next: "prep_challenge",
-        effects: { fitness: 5 },
-      },
-    ],
-  },
-  tournament_lose: {
-    text: "Perdiste, pero tu rendimiento impresionó a los ojeadores.",
-    options: [
-      {
-        label: "Revisar errores y mejorar",
-        next: "prep_challenge",
-        effects: { reputation: 5 },
-      },
-    ],
-  },
-  brand_deal: {
-    text: "Una marca deportiva menor te ofrece promoción.",
-    options: [
-      {
-        label: "Aceptar trato",
-        next: "sponsor_path",
-        effects: { fame: 10 },
-      },
-      {
-        label: "Rechazar y mantener independencia",
-        next: "independent_path",
-        effects: { reputation: 10 },
-      },
-    ],
-  },
-  sponsor_path: {
-    text: "Tu imagen aparece en redes. Te reconocen por la calle.",
-    options: [
-      {
-        label: "Utilizar visibilidad para eventos benéficos",
-        next: "charity_game",
-        effects: { reputation: 10 },
-      },
-    ],
-  },
-  independent_path: {
-    text: "Valoran tu integridad. Ganas seguidores por ser auténtico.",
-    options: [
-      {
-        label: "Seguir compartiendo entrenos",
-        next: "build_trust",
-        effects: { reputation: 5, fame: 5 },
-      },
-    ],
-  },
-  secret_camp: {
-    text: "Un coach universitario te invita a un campus cerrado. Nadie lo sabrá.",
-    options: [
-      {
-        label: "Impresionar en secreto",
-        next: "underground_offer",
-        effects: { fame: 5, reputation: 10 },
-      },
-    ],
-  },
-  earn_spot: {
-    text: "Con trabajo y talento, te conviertes en titular.",
-    options: [
-      {
-        label: "Primer partido oficial",
-        next: "game_panel_1",
-        effects: {},
-      },
-    ],
-  },
-  bench_observation: {
-    text: "Aprendes desde el banquillo, esperando tu oportunidad.",
-    options: [
-      {
-        label: "Tu oportunidad llega",
-        next: "game_panel_1",
-        effects: { reputation: 5 },
-      },
-    ],
-  },
-  prep_challenge: {
-    text: (player, stats) =>
-      stats.fitness >= 30
-        ? "Has alcanzado un nivel físico impresionante. Se avecinan desafíos mayores."
-        : "Aún debes trabajar más para estar listo para el siguiente nivel.",
-    options: [
-      {
-        label: "Ir a juego decisivo",
-        next: "game_panel_2",
-        effects: {},
-        condition: (player, stats) => stats.fitness >= 30,
-      },
-      {
-        label: "Volver a entrenar",
-        next: "early_training",
-        effects: { fitness: 5 },
-        condition: (player, stats) => stats.fitness < 30,
-      },
-    ],
-  },
-  charity_game: {
-    text: "Participas en un evento benéfico. El público te adora.",
-    options: [
-      {
-        label: "Pasar al siguiente capítulo",
-        next: "draft_day",
-        effects: { fame: 10, reputation: 10 },
-      },
-    ],
-  },
-  build_trust: {
-    text: "Tu comunidad en redes confía cada vez más en ti.",
-    options: [
-      {
-        label: "Evento benéfico organizado por ti",
-        next: "charity_game",
-        effects: { reputation: 10 },
-      },
-    ],
+  draft_result_late: {
+    text: "💼 No saliste en las primeras rondas, pero lograste una oportunidad. ¡A trabajar duro para ganarte el puesto!",
+    options: [],
   },
 };
